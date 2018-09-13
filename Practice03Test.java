@@ -53,13 +53,34 @@ public class Practice03Test {
 
 
 	public int find_min_iterative () {
-		// TODO: Fill in this iterative function.
-	}
+		// TODO: Fill in this iterative function.    
+		int lowest = 0;                           			// O(1)          
+		for (int i = 0; i < arr.length; i++)				// O(3)		
+			if (arr[lowest] > arr[i])						// O 3(n-1)
+				lowest = i;									// O 2(n-1)
+		return lowest;										// O(1)
+	}														// Running time for Find min Iterative: O(n-1)
 
+	public int find_min_recursive(int start, int end){
+		if(start == end){									// O(1)
+			return start;									// O(1)
+		}
+		int mid = (start + end) / 2;                        // O(3)
+		int r1 = find_min_recursive(start,mid);				// O(n)
+		int r2 = find_min_recursive(mid+1,end);				// O(n)
+		if(arr[r1] < arr[r2]){                              // O(1)
+			return r1;										// O(1)
+		}
+		else{
+			return r2;										// O(1)
+		}
+	}
 
 	public int find_min_recursive () {
 		// TODO: Fill in this recursive function.
-	}
+		return find_min_recursive(0,arr.length-1);         // O(1)
+
+	}														//Running time for Find min Recursive: O(n)
 
 
 	/**
